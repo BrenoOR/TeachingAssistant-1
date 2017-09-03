@@ -22,6 +22,7 @@ export class AppComponent {
      } else {
        console.error("CPF", this.aluno.cpf, "já cadastrado!");
        this.aluno.cpf = "";
+       alert("Já existe um aluno com esse CPF");
      }
   }
 }
