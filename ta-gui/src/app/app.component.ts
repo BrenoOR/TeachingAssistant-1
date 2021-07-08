@@ -17,6 +17,6 @@ export class AppComponent {
    gravar(a: Aluno): void {
      this.alunoService.gravar(a);
      this.alunos.push(a);
-     this.aluno = {nome: "", cpf: "", email: ""};
+     this.aluno = {nome: "", cpf: "", email: "", github: ""};
   }
 }
