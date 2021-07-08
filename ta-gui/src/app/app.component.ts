@@ -13,6 +13,7 @@ export class AppComponent {
    aluno: Aluno = {nome: "", cpf: "", email: "", github: ""};
    alunoService = new AlunoService();
    alunos: Aluno[] = [];
+   cpfduplicado: boolean = false;
 
    gravar(a: Aluno): void {
      if (this.alunoService.gravar(a)) {
@@ -20,9 +21,11 @@ export class AppComponent {
        this.aluno = {nome: "", cpf: "", email: "", github: ""};
        console.log("Aluno:", a.nome, "cadastrado com sucesso!");
      } else {
-       console.error("CPF", this.aluno.cpf, "já cadastrado!");
-       this.aluno.cpf = "";
-       alert("Já existe um aluno com esse CPF");
+        console.error("CPF", this.aluno.cpf, "já cadastrado!");
+       this.cpfduplicado = true;
      }
+  }
+  onMove(): void {
+      this.cpfduplicado = false;
   }
 }
