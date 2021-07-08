@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "url": "http://localhost:4200",
+            "request": "launch",
+            "name": "Open app.component.html",
+            "file": "/home/breno/CIn/ESS/Atividades/teaching-assistant/TeachingAssistant-1/ta-gui/src/app/app.component.html"
+        }
+    ]
+}
