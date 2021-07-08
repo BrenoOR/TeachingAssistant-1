@@ -18,7 +18,9 @@ export class AppComponent {
      if (this.alunoService.gravar(a)) {
        this.alunos.push(a);
        this.aluno = {nome: "", cpf: "", email: "", github: ""};
+       console.log("Aluno:", a.nome, "cadastrado com sucesso!");
      } else {
+       console.error("CPF", this.aluno.cpf, "já cadastrado!");
        this.aluno.cpf = "";
      }
   }
