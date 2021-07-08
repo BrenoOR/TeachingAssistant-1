@@ -21,7 +21,7 @@ export class AppComponent {
        this.aluno = {nome: "", cpf: "", email: "", github: ""};
        console.log("Aluno:", a.nome, "cadastrado com sucesso!");
      } else {
-        console.error("CPF", this.aluno.cpf, "já cadastrado!");
+       console.error("CPF", this.aluno.cpf, "já cadastrado!");
        this.cpfduplicado = true;
      }
   }
