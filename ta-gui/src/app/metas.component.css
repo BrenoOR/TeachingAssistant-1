@@ -1,15 +1,15 @@
 th {
-   background-color: #3399ff;
-   color: #ffffff;
+   background-color: #cfd8dc;
+   color: #000000;
  }
 
   td, th {
    padding: 15px;
-   border-bottom: 1px solid #ddd;
+   border-bottom: 1px solid #000000;
  }
 
   tr:hover {
-   background-color: #cce6ff;
+   background-color: #92999C;
  }
 
   .meta {

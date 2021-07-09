@@ -15,7 +15,8 @@ import { AlunoService } from './aluno.service';
     alunos: Aluno[];
 
     atualizarAluno(aluno: Aluno): void {
-       this.alunoService.atualizar(aluno);
+      this.alunoService.atualizar(aluno);
+      console.log("As metas de", aluno.nome, "foram atualizadas!");
     }
 
     ngOnInit(): void {

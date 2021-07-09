@@ -16,6 +16,10 @@
   border-radius: 4px;
 }
 
+.inputField:hover {
+  background-color: #b6bec2;
+}
+
 button {
   font-family: Arial;
   color: #cfd8dc;

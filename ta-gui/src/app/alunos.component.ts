@@ -20,7 +20,9 @@ import { Component, OnInit } from '@angular/core';
       if (this.alunoService.criar(a)) {
         this.alunos.push(a);
         this.aluno = new Aluno();
+        console.log("Aluno",a.nome, "cadastrado com sucesso!");
       } else {
+        console.error("CPF", this.aluno.cpf, "já cadastrado!");
         this.cpfduplicado = true;
       }
     }
