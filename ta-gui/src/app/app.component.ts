@@ -20,7 +20,7 @@ export class AppComponent {
      if (this.alunoService.criar(a)) {
        this.alunos.push(a);
        this.aluno = new Aluno();
-       console.log("Aluno",this.aluno.nome, "cadastrado com sucesso!");
+       console.log("Aluno",a.nome, "cadastrado com sucesso!");
      } else {
        console.error("CPF", this.aluno.cpf, "já cadastrado!");
        this.cpfduplicado = true;
@@ -33,6 +33,7 @@ export class AppComponent {
 
    atualizarAluno(aluno: Aluno): void {
       this.alunoService.atualizar(aluno);
+      console.log("Metas do aluno", aluno.nome, "atualizadas");
    }
 
 }
