@@ -12,21 +12,27 @@ import { AlunoService } from './aluno.service';
 export class AppComponent {
    constructor(private alunoService: AlunoService) {}
 
-   aluno: Aluno = {nome: "", cpf: "", email: "", github: ""};
+   aluno: Aluno = new Aluno();
    alunos: Aluno[] = [];
    cpfduplicado: boolean = false;
 
-   gravar(a: Aluno): void {
-     if (this.alunoService.gravar(a)) {
+   criarAluno(a: Aluno): void {
+     if (this.alunoService.criar(a)) {
        this.alunos.push(a);
-       this.aluno = {nome: "", cpf: "", email: "", github: ""};
-       console.log("Aluno:", a.nome, "cadastrado com sucesso!");
+       this.aluno = new Aluno();
+       console.log("Aluno",this.aluno.nome, "cadastrado com sucesso!");
      } else {
        console.error("CPF", this.aluno.cpf, "já cadastrado!");
        this.cpfduplicado = true;
      }
-  }
-  onMove(): void {
+   }
+
+   onMove(): void {
       this.cpfduplicado = false;
-  }
+   }
+
+   atualizarAluno(aluno: Aluno): void {
+      this.alunoService.atualizar(aluno);
+   }
+
 }
