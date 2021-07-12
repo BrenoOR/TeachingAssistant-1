@@ -18,6 +18,10 @@ taserver.use(allowCrossDomain);
 
 taserver.use(bodyParser.json());
 
+taserver.get('/', function (req: express.Request, res: express.Response) {
+  res.send(JSON.stringify(cadastro.getAlunos()));
+})
+
 taserver.get('/alunos', function (req: express.Request, res: express.Response) {
   res.send(JSON.stringify(cadastro.getAlunos()));
 })
@@ -28,7 +32,16 @@ taserver.post('/aluno', function (req: express.Request, res: express.Response) {
   if (aluno) {
     res.send({"success": "O aluno foi cadastrado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser cadastrado"});
+    console.log(cadastro.getGitHubCadastrado(), ",", cadastro.getCpfCadastrado())
+    if (cadastro.getCpfCadastrado() && cadastro.getGitHubCadastrado()) {
+      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 0"});
+    } else if (cadastro.getGitHubCadastrado()) {
+      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 1"});
+    } else if (cadastro.getCpfCadastrado()){
+      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 2"});
+    } else {
+      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 3"});
+    }
   }
 })
 

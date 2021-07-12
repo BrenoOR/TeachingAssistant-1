@@ -9,15 +9,36 @@ import { Aluno } from '../../../common/aluno';
 export class AlunoService {
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private taURL = 'http://localhost:3000';
+  private taURL = 'http://192.168.0.105:3000';
+  public cpfCadastrado = false;
+  public gitHubCadastrado = false;
 
   constructor(private http: HttpClient) {}
 
   criar(aluno: Aluno): Observable<Aluno> {
+    if (this.cpfCadastrado) {
+      this.cpfCadastrado = false;
+    } else if (this.gitHubCadastrado) {
+      this.gitHubCadastrado = false;
+    }
     return this.http.post<any>(this.taURL + "/aluno", aluno, {headers: this.headers})
              .pipe( 
                 retry(2),
-                map( res => {if (res.success) {return aluno;} else {return null;}} )
+                map( res => {if (res.success) {
+                  console.log(res.success);
+                  return aluno;
+                } else {
+                  console.error(res.failure);
+                  if (res.failure == "O aluno não pode ser cadastrado. ErrType: 0") {
+                    this.cpfCadastrado = true;
+                    this.gitHubCadastrado = true;
+                  } else if (res.failure == "O aluno não pode ser cadastrado. ErrType: 1") {
+                    this.gitHubCadastrado = true;
+                  } else if (res.failure == "O aluno não pode ser cadastrado. ErrType: 2") {
+                    this.cpfCadastrado = true;
+                  }
+                  return null;
+                }} )
               ); 
   }
 

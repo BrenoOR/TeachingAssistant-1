@@ -19,6 +19,9 @@
    <tr>
       <td><label>GitHub </label></td>
       <td class="inputField"><input [(ngModel)]="aluno.github" ></td>
+      <td *ngIf="gitHubDuplicado">
+         Já existe um aluno com esse GitHub
+      </td>
    </tr>
    <tr>
       <td><button (click)="criarAluno(aluno)">Adicionar</button></td>
