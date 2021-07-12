@@ -25,8 +25,8 @@ button {
   color: #cfd8dc;
   background-color: black;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: .5rem 1rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   cursor: hand;
 }

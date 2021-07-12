@@ -22,36 +22,23 @@ taserver.get('/alunos', function (req: express.Request, res: express.Response) {
   res.send(JSON.stringify(cadastro.getAlunos()));
 })
 
-taserver.get('/aluno', function (req, res) {
-  var aluno: Aluno = <Aluno> req.body;
-  if (!alunos.cpfNaoCadastrado(aluno.cpf)) {
-    var resp: string = JSON.stringify(aluno);
-    res.send(resp);
-  } else {
-    res.send({"failure": "Aluno não encontrado"});
-  }
-})
-
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
   var aluno: Aluno = <Aluno> req.body; //verificar se � mesmo Aluno!
   aluno = cadastro.cadastrar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi cadastrado com sucesso"});
-    console.log(msgType, "success message sent...");
   } else {
-    res.send({"failure": "O aluno n�o pode ser cadastrado"});
+    res.send({"failure": "O aluno não pode ser cadastrado"});
   }
 })
 
 taserver.put('/aluno', function (req: express.Request, res: express.Response) {
-  msgType = "updateAluno";
   var aluno: Aluno = <Aluno> req.body;
   aluno = cadastro.atualizar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi atualizado com sucesso"});
-    console.log(msgType, "success message sent...");
   } else {
-    res.send({"failure": "O aluno n�o pode ser atualizado"});
+    res.send({"failure": "O aluno não pode ser atualizado"});
   }
 })
 

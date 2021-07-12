@@ -1,13 +1,14 @@
  nav a {
-    padding: 3px 6px;
+    padding: .5rem 1rem;
     text-decoration: none;
     display: inline-block;
-    background-color: #000000;
+    background-color: black;
     color: #cfd8dc;
-    border-radius: 4px;
-    margin: 4px;
+    border: none;
+    border-radius: 0.4rem;
+    margin: .5rem;
   }
   nav a:hover {
-    color: #e6e6e6;
-    background-color: #565a5c;
+    color: black;
+    background-color: #cfd8dc;
   }
