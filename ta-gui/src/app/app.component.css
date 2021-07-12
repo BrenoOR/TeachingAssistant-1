@@ -1,24 +1,13 @@
-.mainMenu {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
+ nav a {
+    padding: 3px 6px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #000000;
+    color: #cfd8dc;
     border-radius: 4px;
-}
-
-.routerLink {
-    font-family: Arial;
-    color: black;
-    background-color: #cfd8dc;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    cursor: hand;
-}
-
-.routerLink:hover {
-    background-color: #B6BEC2;
-}
+    margin: 4px;
+  }
+  nav a:hover {
+    color: #e6e6e6;
+    background-color: #565a5c;
+  }
