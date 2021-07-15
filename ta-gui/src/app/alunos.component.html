@@ -40,6 +40,11 @@
       <td>{{a.cpf}}</td>
       <td>{{a.email}}</td>
       <td>{{a.github}}</td>
+      <td><button (click)="removerAluno(a)">Excluir Aluno</button></td>
+      <td *ngIf="alunoInvalid">
+         Não existe este aluno
+         <button (click)="okayDude()">Ok</button>
+      </td>
    </tr>
  </table>
 

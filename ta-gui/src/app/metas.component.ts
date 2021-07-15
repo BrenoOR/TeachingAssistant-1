@@ -24,7 +24,9 @@ import { AlunoService } from './aluno.service';
     ngOnInit(): void {
       this.alunoService.getAlunos()
       .subscribe(
-         (as) =>  { this.alunos = as; },
+         (as) =>  { 
+          this.alunos = as;
+        },
          (msg) => { alert(msg.message); }
       );
     }

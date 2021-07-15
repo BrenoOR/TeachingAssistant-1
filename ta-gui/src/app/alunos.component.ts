@@ -13,6 +13,7 @@ import { AlunoService } from './aluno.service';
     alunos: Aluno[] = [];
     cpfduplicado: boolean = false;
     gitHubDuplicado: boolean = false;
+    alunoInvalid: boolean = false;
 
     constructor(private alunoService: AlunoService) {}
 
@@ -34,11 +35,30 @@ import { AlunoService } from './aluno.service';
                 },
                 msg => { alert(msg.message); }
               );
-    } 
+    }
+    
+    removerAluno(a: Aluno): void {
+      this.alunoService.remover(a)
+              .subscribe(
+                ar => {
+                  if (ar) {
+                    this.alunos.splice(this.alunos.indexOf(ar), 1);
+                    this.aluno = new Aluno();
+                  } else {
+                    this.alunoInvalid = true;
+                  }
+                },
+                msg => { alert(msg.message); }
+              );
+    }
+
+    okayDude(): void {
+      this.alunoInvalid = false;
+    }
 
     onMove(): void {
-       //this.cpfduplicado = false;
-       //this.gitHubDuplicado = false;
+       this.cpfduplicado = false;
+       this.gitHubDuplicado = false;
     }
 
      ngOnInit(): void {

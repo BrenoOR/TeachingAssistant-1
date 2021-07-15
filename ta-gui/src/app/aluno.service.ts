@@ -1,14 +1,16 @@
 import { Injectable }    from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
 import { Aluno } from '../../../common/aluno';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable()
 export class AlunoService {
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  private params = new HttpParams();
   private taURL = 'http://192.168.0.105:3000';
   public cpfCadastrado = false;
   public gitHubCadastrado = false;
@@ -43,10 +45,24 @@ export class AlunoService {
   }
 
   atualizar(aluno: Aluno): Observable<Aluno> {
-    return this.http.put<any>(this.taURL + "/aluno",JSON.stringify(aluno), {headers: this.headers})          .pipe( 
+    return this.http.put<any>(this.taURL + "/aluno",JSON.stringify(aluno), {headers: this.headers})          
+              .pipe( 
                 retry(2),
                 map( res => {if (res.success) {return aluno;} else {return null;}} )
               ); 
+  }
+
+  remover(aluno: Aluno): Observable<Aluno> {
+    var body: string = JSON.stringify(aluno);
+    return this.http.delete<any>(this.taURL + "/aluno", {headers: this.headers, body, responseType: "json"})
+              .pipe(
+                retry(2),
+                map( res => { if (res.success) {
+                  return aluno;
+                } else {
+                  return null;
+                }} )
+              );
   }
 
   getAlunos(): Observable<Aluno[]> {
