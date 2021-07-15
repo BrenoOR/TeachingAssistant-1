@@ -19,49 +19,64 @@ taserver.use(allowCrossDomain);
 taserver.use(bodyParser.json());
 
 taserver.get('/', function (req: express.Request, res: express.Response) {
+  console.log("Req: GET received - " + req.url);
   res.send(JSON.stringify(cadastro.getAlunos()));
 })
 
 taserver.get('/alunos', function (req: express.Request, res: express.Response) {
+  console.log("Req: GET received - " + req.url);
   res.send(JSON.stringify(cadastro.getAlunos()));
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
   var aluno: Aluno = <Aluno> req.body; //verificar se � mesmo Aluno!
+  console.log("Req: POST received - " + aluno.nome);
   aluno = cadastro.cadastrar(aluno);
   if (aluno) {
-    res.send({"success": "O aluno foi cadastrado com sucesso"});
+    var prepareRes: string = "O aluno " + aluno.nome + " foi cadastrado com sucesso";
+    res.send({"success": prepareRes});
   } else {
     console.log(cadastro.getGitHubCadastrado(), ",", cadastro.getCpfCadastrado())
+    var prepareRes: string = "O aluno " + aluno.nome + " não pode ser cadastrado. ";
     if (cadastro.getCpfCadastrado() && cadastro.getGitHubCadastrado()) {
-      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 0"});
+      prepareRes = prepareRes + "Errype: 0";
+      res.send({"failure": prepareRes});
     } else if (cadastro.getGitHubCadastrado()) {
-      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 1"});
+      prepareRes = prepareRes + "Errype: 1";
+      res.send({"failure": prepareRes});
     } else if (cadastro.getCpfCadastrado()){
-      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 2"});
+      prepareRes = prepareRes + "Errype: 2";
+      res.send({"failure": prepareRes});
     } else {
-      res.send({"failure": "O aluno não pode ser cadastrado. ErrType: 3"});
+      prepareRes = prepareRes + "Errype: 3";
+      res.send({"failure": prepareRes});
     }
   }
 })
 
 taserver.put('/aluno', function (req: express.Request, res: express.Response) {
   var aluno: Aluno = <Aluno> req.body;
+  console.log("Req: PUT received - " + aluno);
   aluno = cadastro.atualizar(aluno);
   if (aluno) {
-    res.send({"success": "O aluno foi atualizado com sucesso"});
+    var prepareRes: string = "O aluno " + aluno.nome + " foi atualizado com sucesso";
+    res.send({"success": prepareRes});
   } else {
-    res.send({"failure": "O aluno não pode ser atualizado"});
+    var prepareRes: string = "O aluno " + aluno.nome + " não pode ser atualizado";
+    res.send({"failure": prepareRes});
   }
 })
 
 taserver.delete('/aluno', function (req: express.Request, res: express.Response) {
   var aluno: Aluno = <Aluno> req.body;
+  console.log("Req: DELETE received - " + aluno.nome);
   aluno = cadastro.remover(aluno);
   if (aluno) {
-    res.send({"success": "O aluno foi removido com sucesso"});
+    var prepareRes: string = "O aluno " + aluno.nome + " foi removido com sucesso";
+    res.send({"success": prepareRes});
   } else {
-    res.send({"failure": "O aluno não pode ser removido"});
+    var prepareRes: string = "O aluno " + aluno.nome + " não pode ser removido com sucesso";
+    res.send({"failure": prepareRes});
   }
 })
 

@@ -58,6 +58,7 @@ export class AlunoService {
               .pipe(
                 retry(2),
                 map( res => { if (res.success) {
+                  console.log(res.success)
                   return aluno;
                 } else {
                   return null;
