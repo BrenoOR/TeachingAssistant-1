@@ -1,5 +1,4 @@
 <html (mousemove)="onMove()">
-
   <table>
    <tr>
       <td><label>Nome </label></td>
@@ -8,24 +7,24 @@
    <tr>
       <td><label>CPF </label></td>
       <td class="inputField"><input [(ngModel)]="aluno.cpf" name="cpfbox"></td>
-         Já existe um aluno com esse CPF
       <td *ngIf="cpfduplicado">
+         Já existe um aluno com esse CPF
       </td>
    </tr>
    <tr>
       <td><label>E-mail </label></td>
       <td class="inputField"><input [(ngModel)]="aluno.email" ></td>
-   <tr>
    </tr>
+   <tr>
       <td><label>GitHub </label></td>
       <td *ngIf="gitHubDuplicado">
+         Já existe um aluno com esse GitHub
+      </td>
       <td class="inputField"><input [(ngModel)]="aluno.github" ></td>
    </tr>
-      <td><button (click)="criarAluno(aluno)">Adicionar</button></td>
    <tr>
+      <td><button (click)="criarAluno(aluno)" name="addButton">Adicionar</button></td>
    </tr>
-      </td>
-         Já existe um aluno com esse GitHub
  </table>
 
   <table>
@@ -33,8 +32,8 @@
       <th>Nome</th>
       <th>CPF</th>
       <th>E-mail</th>
-   </tr>
       <th>GitHub</th>
+   </tr>
    <tr *ngFor="let a of alunos" name="alunolist">
     <td name="nomelist">{{a.nome}}</td>
     <td name="cpflist">{{a.cpf}}</td>

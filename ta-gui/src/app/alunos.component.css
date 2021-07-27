@@ -5,17 +5,6 @@
   width: 15em;
 }
 
-.alunos li {
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: cyan;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-}
-
 .inputField:hover {
   background-color: #b6bec2;
 }
@@ -30,6 +19,7 @@ button {
   cursor: pointer;
   cursor: hand;
 }
+
 button:hover {
   background-color: #cfd8dc;
   color: black;
